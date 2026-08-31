@@ -22,6 +22,29 @@ your browser.
 
 ---
 
+<div align="center">
+
+<img src="docs/screenshot-timetable.png" width="880" alt="Timetable view: open classes on a week grid, coloured by headcount, with clashes struck through">
+
+<sub>**The timetable view.** All 26 open classes of one subject on a real week grid.
+Each cell is filled in proportion to how full the class is; your current class is
+marked ★; hatched, struck-through cells collide with another subject and say
+which one. The banner on top names the best feasible candidate and offers to hunt
+it.</sub>
+
+<br><br>
+
+<img src="docs/screenshot-confirm.png" width="880" alt="Confirmation dialog showing the class being left, the class being joined, and its headcount">
+
+<sub>**Confirming a move.** It spells out which class you are leaving and which you
+are joining, with the target's headcount and how long ago that number was read —
+here 36 of 36, the fullest class of the subject. Focus starts on Cancel, so a
+stray Enter does nothing.</sub>
+
+</div>
+
+---
+
 ## What it does
 
 Moving class on FAP means opening a dropdown, picking a class blind, and pressing
