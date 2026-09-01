@@ -455,6 +455,18 @@ const roomOf = (i) => {
 };
 
 /**
+ * Lecturer code, when the portal gives one.
+ *
+ * Plenty of classes ship "Lecture: <b></b>," with nothing inside, so an empty
+ * result is a normal answer rather than a parse failure — nothing is drawn then
+ * instead of an empty label sitting there looking broken.
+ */
+const lecturerOf = (i) => {
+  const s = sessionsOf(i).find(x => x.lecturer);
+  return s ? s.lecturer : '';
+};
+
+/**
  * The common prefix shared by every class name in the subject.
  *
  * A subject's classes usually differ only in the tail: WDU203C_FA26_01, _02,
@@ -684,6 +696,11 @@ function makeCell(item, room, max, short) {
   }
   body.appendChild(sub);
 
+  // Lecturer gets its own faint third line: it is the lowest-priority field on
+  // this screen and must not compete with the headcount for attention.
+  const lec = lecturerOf(item);
+  if (lec) body.appendChild(el('div', 'lec', lec));
+
   b.appendChild(body);
   if (item.current) b.disabled = true;
   else b.addEventListener('click', () => startHunt(item));
@@ -733,7 +750,11 @@ function renderRank(rows) {
       tr.appendChild(el('div', 'when', `${dayLabel(item) || '—'} · Slot ${slotOf(item) || '?'}`));
     }
 
-    tr.appendChild(el('div', 'room', roomOf(item)));
+    const roomCell = el('div', 'room');
+    roomCell.appendChild(el('div', null, roomOf(item)));
+    const lecName = lecturerOf(item);
+    if (lecName) roomCell.appendChild(el('div', 'lec', lecName));
+    tr.appendChild(roomCell);
 
     // The bar length is the fastest thing to read here: longer = fuller = harder
     // to get into
@@ -876,7 +897,15 @@ function confirmMove(item) {
   };
 
   const desc = (x) => {
-    const parts = [dayLabel(x), slotOf(x) ? 'Slot ' + slotOf(x) : '', roomOf(x)].filter(Boolean);
+    // The lecturer belongs here more than anywhere else on screen: this is the
+    // moment the decision is actually made, and some people move class for the
+    // lecturer rather than for the timeslot.
+    const parts = [
+      dayLabel(x),
+      slotOf(x) ? 'Slot ' + slotOf(x) : '',
+      roomOf(x),
+      lecturerOf(x) ? 'GV ' + lecturerOf(x) : ''
+    ].filter(Boolean);
     return parts.join(' · ') || 'chưa rõ lịch';
   };
 

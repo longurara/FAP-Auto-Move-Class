@@ -11,6 +11,7 @@ A Chrome extension for **FAP**, the FPT University student portal.
 No server, no account, no password — it reuses the session already sitting in
 your browser.
 
+[![Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-install-4285F4?logo=googlechrome&logoColor=white)](https://chromewebstore.google.com/detail/fap-auto-move-class/ghigbogpfhpgcogmbjehjpfigpgcalof)
 ![Manifest V3](https://img.shields.io/badge/Manifest-V3-4285F4?logo=googlechrome&logoColor=white)
 ![Chrome 116+](https://img.shields.io/badge/Chrome-116%2B-4285F4?logo=googlechrome&logoColor=white)
 ![Dependencies](https://img.shields.io/badge/dependencies-0-2ea44f)
@@ -64,11 +65,25 @@ on the timetable — a job, friends in a class, a particular lecturer.
 
 ## Install
 
+**[Install from the Chrome Web Store](https://chromewebstore.google.com/detail/fap-auto-move-class/ghigbogpfhpgcogmbjehjpfigpgcalof)** — one click, and Chrome
+keeps it updated.
+
+<details>
+<summary>Or load this folder unpacked</summary>
+
+Useful if you want to read the source you are running, or try a change before it
+reaches the store.
+
 1. Open `chrome://extensions`
 2. Turn on **Developer mode** (top right)
 3. Click **Load unpacked** and pick this folder
-4. Sign in to FAP the way you normally do
-5. Click the extension icon in the toolbar
+
+</details>
+
+Then:
+
+1. Sign in to FAP the way you normally do
+2. Click the extension icon in the toolbar
 
 Requires Chrome 116 or newer.
 

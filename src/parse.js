@@ -57,11 +57,19 @@ export function parseSessions(raw) {
     if (idx === undefined) continue;
 
     const room = t.match(/RoomNo:?\s*([^\-,]+)/i);
+
+    // The lecturer runs to the end of the chunk: the comma that terminates
+    // "Lecture: phungnpk," is the very separator this loop already split on, so
+    // by the time we get here it is gone. It is legitimately empty on some
+    // classes ("Lecture: ,"), which is why nothing is invented when it is.
+    const lec = t.match(/Lecture:?\s*(.*)$/i);
+
     out.push({
       dayIndex: idx,
       label: WEEKDAYS[idx],
       slot: parseInt(slot[1], 10),
-      room: room ? clean(room[1]) : ''
+      room: room ? clean(room[1]) : '',
+      lecturer: lec ? clean(lec[1]) : ''
     });
   }
   return out;
